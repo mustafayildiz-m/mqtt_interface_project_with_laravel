@@ -56,7 +56,7 @@ class LoginController extends Controller
 
         if (auth()->attempt($credentials)) {
             // Authentication was successful
-            Alert::success('Giriş Başarılı.');
+            Alert::success('Giriş başarılı.')->showConfirmButton('Tamam', '#3085d6');
             return redirect()->intended($this->redirectPath());
         }
 
@@ -64,7 +64,7 @@ class LoginController extends Controller
 
     protected function sendFailedLoginResponse(Request $request)
     {
-        Alert::error('Giriş Bilgilerinizi kontrol ediniz.');
+        Alert::error('Giriş bilgilerinizi lütfen kontrol ediniz.')->showConfirmButton('Tamam', '#3085d6');;
         return redirect()->back();
 
     }

@@ -221,13 +221,15 @@
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="wd-30 ht-30 rounded-circle"
-                         src="{{ asset(\App\Models\UserInfo::where('user_id',auth()->user()->id)->first()->user_img) }}" alt="profile">
+                         src="{{ asset(\App\Models\UserInfo::where('user_id',auth()->user()->id)->first()->user_img) }}"
+                         alt="profile">
                 </a>
                 <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
                     <div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
                         <div class="mb-3">
                             <img class="wd-80 ht-80 rounded-circle"
-                                 src="{{ asset(\App\Models\UserInfo::where('user_id',auth()->user()->id)->first()->user_img) }}" alt="">
+                                 src="{{ asset(\App\Models\UserInfo::where('user_id',auth()->user()->id)->first()->user_img) }}"
+                                 alt="">
                         </div>
                         <div class="text-center">
                             <p class="tx-16 fw-bolder">{{ Auth::user()->name }}</p>
@@ -237,7 +239,7 @@
 
                     <ul class="list-unstyled p-1">
                         <li class="dropdown-item py-2">
-                            <a href="{{ route('account.profile',['workspace'=>request()->segment(1)]) }}"
+                            <a href="{{ route('account.profile',['workspace'=>request()->segment(1)=== 'device' ? request()->segment(2):request()->segment(1)]) }}"
                                class="text-body ms-0">
                                 <i class="me-2 icon-md" data-feather="user"></i>
                                 <span>Profil</span>

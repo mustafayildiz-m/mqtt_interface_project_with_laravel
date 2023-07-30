@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Responsive Laravel Admin Dashboard Template based on Bootstrap 5">
-    <meta name="author" content="Superlog">
-    <meta name="keywords" content="superlog">
+    <meta name="author" content="superLOG">
+    <meta name="keywords" content="superLOG">
 
-    <title>Superlog</title>
+    <title>superLOG</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -264,13 +264,15 @@
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="wd-30 ht-30 rounded-circle"
-                         src="{{ asset(\App\Models\UserInfo::where('user_id',auth()->user()->id)->first()->user_img) }}" alt="profile">
+                         src="{{ asset(\App\Models\UserInfo::where('user_id',auth()->user()->id)->first()->user_img) }}"
+                         alt="profile">
                 </a>
                 <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
                     <div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
                         <div class="mb-3">
                             <img class="wd-80 ht-80 rounded-circle"
-                                 src="{{ asset(\App\Models\UserInfo::where('user_id',auth()->user()->id)->first()->user_img) }}" alt="">
+                                 src="{{ asset(\App\Models\UserInfo::where('user_id',auth()->user()->id)->first()->user_img) }}"
+                                 alt="">
                         </div>
                         <div class="text-center">
                             <p class="tx-16 fw-bolder">{{ Auth::user()->name }}</p>
@@ -279,12 +281,12 @@
                     </div>
 
                     <ul class="list-unstyled p-1">
-{{--                        <li class="dropdown-item py-2">--}}
-{{--                            <a href="{{ route('account.profile',['workspace'=>$workspace_detail->id]) }}" class="text-body ms-0">--}}
-{{--                                <i class="me-2 icon-md" data-feather="user"></i>--}}
-{{--                                <span>Profil</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+                        {{--                        <li class="dropdown-item py-2">--}}
+                        {{--                            <a href="{{ route('account.profile',['workspace'=>$workspace_detail->id]) }}" class="text-body ms-0">--}}
+                        {{--                                <i class="me-2 icon-md" data-feather="user"></i>--}}
+                        {{--                                <span>Profil</span>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
                         <li class="dropdown-item py-2">
                             <a class="text-body ms-0" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -317,11 +319,11 @@
                                     @if(Session::has('success'))
                                         @if(is_array(Session::get('success')))
                                             @foreach(Session::get('success') as $message)
-                                                    <?php \RealRashid\SweetAlert\Facades\Alert::success($message)
+                                                    <?php \RealRashid\SweetAlert\Facades\Alert::success($message)->showConfirmButton('Tamam', '#3085d6')
                                                     ?>
                                             @endforeach
                                         @else
-                                                <?php \RealRashid\SweetAlert\Facades\Alert::success(Session::get('success'))
+                                                <?php \RealRashid\SweetAlert\Facades\Alert::success(Session::get('success'))->showConfirmButton('Tamam', '#3085d6')
                                                 ?>
                                         @endif
                                     @endif
@@ -329,11 +331,11 @@
                                     @if(Session::has('error'))
                                         @if(is_array(Session::get('error')))
                                             @foreach(Session::get('error') as $message)
-                                                    <?php \RealRashid\SweetAlert\Facades\Alert::success($message)
+                                                    <?php \RealRashid\SweetAlert\Facades\Alert::error($message)->showConfirmButton('Tamam', '#3085d6');
                                                     ?>
                                             @endforeach
                                         @else
-                                                <?php \RealRashid\SweetAlert\Facades\Alert::success(Session::get('error'))
+                                                <?php \RealRashid\SweetAlert\Facades\Alert::error(Session::get('error'))->showConfirmButton('Tamam', '#3085d6');
                                                 ?>
                                         @endif
                                     @endif
@@ -364,7 +366,7 @@
                                                             class="btn btn-primary btn-icon-text d-flex align-items-center justify-content-center"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#workspaceStaticBackdrop">
-                                                        Çalışma alanı ekle
+                                                        Çalışma Alanı Ekle
                                                         <i class="btn-icon-append" data-feather="plus"></i>
                                                     </button>
                                                 </div>
@@ -440,7 +442,7 @@
                                 aria-label="Default select example">
                             <option selected disabled>Alan seçiniz...</option>
 
-                            @foreach(auth()->user()->workspaces as $workspace)
+                            @foreach($workspaces as $workspace)
                                 <option
                                     value="{{$workspace->id}}">{{$workspace->name}}</option>
                             @endforeach

@@ -129,6 +129,7 @@ return [
     'uploaded' => ':attribute yüklemesi başarısız.',
     'url' => ':attribute biçimi geçersiz.',
     'uuid' => ':attribute bir UUID formatına uygun olmalı.',
+    'ok' => 'Tamam',
 
     /*
     |--------------------------------------------------------------------------
@@ -171,6 +172,7 @@ return [
         'password' => 'Şifre',
         'email' => 'E-Posta',
         'name' => 'İsim',
+        'current_password' => 'Mevcut Şifre',
     ],
 
 ];

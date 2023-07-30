@@ -19,7 +19,7 @@ License: For each use you must have a valid license purchased only from above li
     <meta name="keywords"
           content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, laravel, theme, front-end, ui kit, web">
 
-    <title>Superlog</title>
+    <title>superLOG</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,7 +61,7 @@ License: For each use you must have a valid license purchased only from above li
                             <div class="col-8 offset-2 ps-md-0">
                                 <div class="auth-form-wrapper px-4 py-5">
                                     <a href="#" class="noble-ui-logo d-block mb-2"><img
-                                            src="{{ asset('assets/images/logo.png') }}" alt="SuperLog Logo" width="150"></a>
+                                            src="{{ asset('assets/images/logo.png') }}" alt="superLOG Logo" width="150"></a>
                                     {{-- <a href="#" class="noble-ui-logo d-block mb-2">Super<span>Log</span></a> --}}
                                     <h5 class="text-muted fw-normal mb-4">Hesap oluşturun.</h5>
                                     <form method="POST" action="{{ route('register') }}" class="forms-sample">

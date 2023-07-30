@@ -13,14 +13,14 @@ return new class extends Migration {
         Schema::create('device_temp_hum_limits', function (Blueprint $table) {
             $table->id();
             $table->string('serial_no');
-            $table->integer('temp_min')->default(15);
-            $table->integer('temp_max')->default(40);
-            $table->integer('crit_temp_min')->default(15);
-            $table->integer('crit_temp_max')->default(40);
-            $table->integer('moisture_min')->default(15);
-            $table->integer('moisture_max')->default(40);
-            $table->integer('crit_moisture_min')->default(15);
-            $table->integer('crit_moisture_max')->default(40);
+            $table->float('temp_min')->default(18);
+            $table->float('temp_max')->default(27);
+            $table->float('crit_temp_min')->default(15);
+            $table->float('crit_temp_max')->default(30);
+            $table->float('moisture_min')->default(55);
+            $table->float('moisture_max')->default(70);
+            $table->float('crit_moisture_min')->default(45);
+            $table->float('crit_moisture_max')->default(80);
             $table->timestamps();
         });
     }

@@ -7,7 +7,7 @@
 @section('content')
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('dashboard', ['workspace' => 'supercode']) }}">Supercode</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard', ['workspace' => 'supercode']) }}">superLOG</a></li>
             <li class="breadcrumb-item active" aria-current="page">Destek Taleplerim</li>
         </ol>
     </nav>

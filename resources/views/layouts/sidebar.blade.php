@@ -1,6 +1,6 @@
 <nav class="sidebar">
     <div class="sidebar-header">
-        <a href="#" class="sidebar-brand">
+        <a href="/" class="sidebar-brand">
             <img src="{{ asset('assets/images/logo.png') }}" alt="SuperLog Logo" width="150">
             {{-- Super<span>Log</span> --}}
         </a>
@@ -24,115 +24,6 @@
                         </div>
                     </a>
                 </div> --}}
-                <div class="list-group ws-list-group">
-                    <!-- Example single danger button -->
-                    <div class="btn-group" style="border: solid 1px #CCC; border-radius: 0;">
-                        <button type="button" class="dropdown-item d-flex" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                            <img class="wd-40 ht-40 rounded-circle" src="https://ui-avatars.com/api/?name=Super+Code"
-                                 alt="">
-                            <div class="d-flex flex-row mx-1 align-items-center">
-                                <div class="d-flex flex-column mx-1 align-items-baseline">
-
-                                    <span>{{$workspace_detail->name}}</span>
-                                    <span class="text-muted"><small>Çalışma alanı</small></span>
-                                </div>
-                                <div>
-
-                                    <i data-feather="chevron-down"></i>
-                                </div>
-                            </div>
-                        </button>
-                        <ul class="dropdown-menu"
-                            style="width: 100%; padding: 0; border: solid 1px #CCC; border-top: none; border-radius: 0;">
-                            @foreach(auth()->user()->workspaces as $key => $workspace)
-                                @if($workspace_detail->id != $workspace->id)
-                                    <li>
-                                        <a class="dropdown-item d-flex align-items-center"
-                                           href="{{ route('dashboard', ['workspace' => $workspace->id]) }}">
-                                            <img class="wd-40 ht-40 rounded-circle"
-                                                 src="https://ui-avatars.com/api/?name=Super+Code" alt="">
-                                            <div class="d-flex flex-column mx-1 align-items-baseline">
-                                                <span>{{$workspace->name}}</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider" style="margin: 0;">
-                                    </li>
-                                @endif
-                            @endforeach
-
-{{--                            <li class="mt-2">--}}
-{{--                                <a class="dropdown-item d-flex align-items-center"--}}
-{{--                                   href="javascript:void(0)"--}}
-{{--                                   data-bs-toggle="modal"--}}
-{{--                                   data-bs-target="#workspaceStaticBackdrop1"--}}
-{{--                                >--}}
-{{--                                    <svg style="width: 37px;" xmlns="http://www.w3.org/2000/svg" width="24"--}}
-{{--                                         height="24"--}}
-{{--                                         viewBox="0 0 24 24"--}}
-{{--                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"--}}
-{{--                                         stroke-linejoin="round" class="feather feather-plus btn-icon-append">--}}
-{{--                                        <line x1="12" y1="5" x2="12" y2="19"></line>--}}
-{{--                                        <line x1="5" y1="12" x2="19" y2="12"></line>--}}
-{{--                                    </svg>--}}
-{{--                                    <strong>Cihaz Ekle</strong>--}}
-{{--                                </a>--}}
-
-{{--                            </li>--}}
-
-                            <li class="mt-2">
-                                <a class="dropdown-item d-flex align-items-center"
-                                   href="javascript:void(0)"
-                                   data-bs-toggle="modal"
-                                   data-bs-target="#workspaceStaticBackdrop3"
-                                >
-                                    <svg style="width: 37px;" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24"
-                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                         stroke-linejoin="round" class="feather feather-plus btn-icon-append">
-                                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    </svg>
-                                    <strong>Çalışma Alanı Ekle</strong>
-                                </a>
-
-                            </li>
-
-
-                            <li>
-                                <hr class="dropdown-divider" style="margin: 0;">
-                            </li>
-
-{{--                            <li class="mt-2">--}}
-{{--                                <a class="dropdown-item d-flex align-items-center"--}}
-{{--                                   href="{{ route('logout') }}"--}}
-{{--                                   onclick="event.preventDefault();--}}
-{{--                                                     document.getElementById('logout-form').submit();">--}}
-{{--                                    <svg style="width: 37px;" xmlns="http://www.w3.org/2000/svg" width="24" height="24"--}}
-{{--                                         viewBox="0 0 24 24"--}}
-{{--                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"--}}
-{{--                                         stroke-linejoin="round" class="feather feather-log-out me-2 icon-md">--}}
-{{--                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>--}}
-{{--                                        <polyline points="16 17 21 12 16 7"></polyline>--}}
-{{--                                        <line x1="21" y1="12" x2="9" y2="12"></line>--}}
-{{--                                    </svg>--}}
-{{--                                    <strong>Çıkış</strong>--}}
-{{--                                </a>--}}
-{{--                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">--}}
-{{--                                    @csrf--}}
-{{--                                </form>--}}
-{{--                            </li>--}}
-                            <li>
-                                <hr class="dropdown-divider" style="margin: 0;">
-                            </li>
-
-                        </ul>
-
-
-                    </div>
-                </div>
 
             @endif
             @if (auth()->user()->is_admin)
@@ -168,21 +59,155 @@
 
             @if (!auth()->user()->is_admin || Request::is('admin/users/*'))
                 <li class="nav-item nav-category">Dashboard</li>
-                <li class="nav-item {{ active_class(['*dashboard*']) }}">
+                <li class="nav-item {{ active_class(['*/dashboard*']) }}">
+                    <div id="prf" class="list-group ws-list-group">
+                        <!-- Example single danger button -->
+                        <div class="btn-group" style="border: solid 1px #CCC; border-radius: 0;">
+                            <button type="button" class="dropdown-item d-flex" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                <img class="wd-40 ht-40 rounded-circle"
+                                     src="https://ui-avatars.com/api/?name=Super+Code"
+                                     alt="">
+                                <div class="d-flex flex-row mx-1 align-items-center">
+                                    <div class="d-flex flex-column mx-1 align-items-baseline">
+
+                                        <span>{{$workspace_detail->name}}</span>
+                                        <span class="text-muted"><small>Çalışma alanı</small></span>
+                                    </div>
+                                    <div>
+
+                                        <i data-feather="chevron-down"></i>
+                                    </div>
+                                </div>
+                            </button>
+
+                                <?php
+                                $userRole = \App\Models\AllowedUserAndWorkspaces::where(['allowed_user_id' => auth()->user()->id, 'allowed_workspace_id' => $workspace_detail->id])->first();
+
+                                $workspaces = \Illuminate\Support\Facades\DB::table('allowed_user_and_workspaces as allow')
+                                    ->join('work_spaces as ws', 'allow.allowed_workspace_id', '=', 'ws.id')
+                                    ->select('*', 'ws.id as workspace_id')
+                                    ->distinct('ws.name')
+                                    ->where('allow.allowed_user_id', \auth()->user()->id)->get();
+                                ?>
+
+                            <ul class="dropdown-menu"
+                                style="width: 100%; padding: 0; border: solid 1px #CCC; border-top: none; border-radius: 0;">
+                                @foreach($workspaces as $key => $workspace)
+                                    @if($workspace_detail->id != $workspace->id)
+                                            <?php
+                                            if (request()->segment(1) == 'device') {
+                                                $route = 'devices';
+                                            } elseif (request()->segment(2) == 'account') {
+                                                $route = 'dashboard';
+                                            } else {
+                                                $route = request()->segment(2);
+                                            }
+                                            ?>
+                                        <li>
+                                            <a class="dropdown-item d-flex align-items-center"
+                                               href="{{ route($route , ['workspace' => $workspace->id]) }}">
+                                                <img class="wd-40 ht-40 rounded-circle"
+                                                     src="https://ui-avatars.com/api/?name=Super+Code" alt="">
+                                                <div class="d-flex flex-column mx-1 align-items-baseline">
+                                                    <span>{{$workspace->name}}</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider" style="margin: 0;">
+                                        </li>
+                                    @endif
+                                @endforeach
+
+                                {{--                            <li class="mt-2">--}}
+                                {{--                                <a class="dropdown-item d-flex align-items-center"--}}
+                                {{--                                   href="javascript:void(0)"--}}
+                                {{--                                   data-bs-toggle="modal"--}}
+                                {{--                                   data-bs-target="#workspaceStaticBackdrop1"--}}
+                                {{--                                >--}}
+                                {{--                                    <svg style="width: 37px;" xmlns="http://www.w3.org/2000/svg" width="24"--}}
+                                {{--                                         height="24"--}}
+                                {{--                                         viewBox="0 0 24 24"--}}
+                                {{--                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"--}}
+                                {{--                                         stroke-linejoin="round" class="feather feather-plus btn-icon-append">--}}
+                                {{--                                        <line x1="12" y1="5" x2="12" y2="19"></line>--}}
+                                {{--                                        <line x1="5" y1="12" x2="19" y2="12"></line>--}}
+                                {{--                                    </svg>--}}
+                                {{--                                    <strong>Cihaz Ekle</strong>--}}
+                                {{--                                </a>--}}
+
+                                {{--                            </li>--}}
+
+                                @if($userRole->user_role ==='owner')
+                                    <li class="mt-2">
+                                        <a class="dropdown-item d-flex align-items-center"
+                                           href="javascript:void(0)"
+                                           data-bs-toggle="modal"
+                                           data-bs-target="#workspaceStaticBackdrop3"
+                                        >
+                                            <svg style="width: 37px;" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                 height="24"
+                                                 viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round"
+                                                 stroke-linejoin="round" class="feather feather-plus btn-icon-append">
+                                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            </svg>
+                                            <strong>Çalışma Alanı Ekle</strong>
+                                        </a>
+
+                                    </li>
+                                @endif
+
+
+                                <li>
+                                    <hr class="dropdown-divider" style="margin: 0;">
+                                </li>
+
+                                {{--                            <li class="mt-2">--}}
+                                {{--                                <a class="dropdown-item d-flex align-items-center"--}}
+                                {{--                                   href="{{ route('logout') }}"--}}
+                                {{--                                   onclick="event.preventDefault();--}}
+                                {{--                                                     document.getElementById('logout-form').submit();">--}}
+                                {{--                                    <svg style="width: 37px;" xmlns="http://www.w3.org/2000/svg" width="24" height="24"--}}
+                                {{--                                         viewBox="0 0 24 24"--}}
+                                {{--                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"--}}
+                                {{--                                         stroke-linejoin="round" class="feather feather-log-out me-2 icon-md">--}}
+                                {{--                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>--}}
+                                {{--                                        <polyline points="16 17 21 12 16 7"></polyline>--}}
+                                {{--                                        <line x1="21" y1="12" x2="9" y2="12"></line>--}}
+                                {{--                                    </svg>--}}
+                                {{--                                    <strong>Çıkış</strong>--}}
+                                {{--                                </a>--}}
+                                {{--                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">--}}
+                                {{--                                    @csrf--}}
+                                {{--                                </form>--}}
+                                {{--                            </li>--}}
+                                <li>
+                                    <hr class="dropdown-divider" style="margin: 0;">
+                                </li>
+
+                            </ul>
+
+
+                        </div>
+                    </div>
                     <a href="{{ route('dashboard', ['workspace' => $workspace_detail->id]) }}" class="nav-link">
                         <i class="link-icon" data-feather="home"></i>
                         <span class="link-title">Anasayfa</span>
                     </a>
                 </li>
 
-                <li class="nav-item {{ active_class(['devices*']) }}">
+                <li class="nav-item {{ active_class(['*/devices*']) }}">
                     <a class="nav-link" href="{{ route('devices', ['workspace' => $workspace_detail->id]) }}"
                        aria-expanded="{{ is_active_route(['devices/*']) }}">
                         <i class="link-icon" data-feather="monitor"></i>
                         <span class="link-title">Cihazlar</span>
                     </a>
                 </li>
-                <li class="nav-item {{ active_class(['reports*']) }}">
+                <li class="nav-item {{ active_class(['*/reports*']) }}">
                     <a class="nav-link" href="{{ route('reports', ['workspace' =>$workspace_detail->id]) }}"
                        aria-expanded="{{ is_active_route(['reports/*']) }}">
                         <i class="link-icon" data-feather="bar-chart"></i>
@@ -190,14 +215,18 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ active_class(['zones*']) }}">
-                    <a class="nav-link" href="{{ route('zones', ['workspace' =>$workspace_detail->id]) }}"
-                       aria-expanded="{{ is_active_route(['zones/*']) }}">
-                        <i class="link-icon" data-feather="square"></i>
-                        <span class="link-title">Bölgeler</span>
-                    </a>
-                </li>
-                <li class="nav-item {{ active_class(['issues*']) }}">
+                @if($userRole->user_role ==='owner')
+
+                    <li class="nav-item {{ active_class(['*/zones*']) }}">
+                        <a class="nav-link" href="{{ route('zones', ['workspace' =>$workspace_detail->id]) }}"
+                           aria-expanded="{{ is_active_route(['zones/*']) }}">
+                            <i class="link-icon" data-feather="square"></i>
+                            <span class="link-title">Bölgeler</span>
+                        </a>
+                    </li>
+                @endif
+
+                <li class="nav-item {{ active_class(['*/issues*']) }}">
                     <a class="nav-link" href="{{ route('issues',['workspace' =>$workspace_detail->id]) }}"
                        aria-expanded="{{ is_active_route(['issues/*']) }}">
                         <i class="link-icon" data-feather="cloud-off"></i>
@@ -205,15 +234,22 @@
                     </a>
                 </li>
                 <li class="nav-item nav-category">Çalışma Alanı</li>
-                <li class="nav-item {{ active_class(['*/collaborations*']) }}">
-                    <a href="{{ route('workspaces.collaborations', ['workspace' =>$workspace_detail->id]) }}"
-                       class="nav-link">
-                        <i class="link-icon" data-feather="users"></i>
-                        <span class="link-title">Katılımcılar</span>
-                    </a>
-                </li>
+
+
+                @if($userRole->user_role === 'owner')
+                    <li class="nav-item {{ active_class(['*/collaborations*']) }}">
+                        <a href="{{ route('collaborations', ['workspace' =>$workspace_detail->id]) }}"
+                           class="nav-link">
+                            <i class="link-icon" data-feather="users"></i>
+                            <span class="link-title">Katılımcılar</span>
+                        </a>
+                    </li>
+
+                @endif
+
+
                 <li class="nav-item {{ active_class(['*/settings*']) }}">
-                    <a href="{{ route('workspaces.settings', ['workspace' =>$workspace_detail->id]) }}"
+                    <a href="{{ route('settings', ['workspace' =>$workspace_detail->id]) }}"
                        class="nav-link">
                         <i class="link-icon" data-feather="settings"></i>
                         <span class="link-title">Ayarlar</span>
@@ -348,6 +384,15 @@
         });
 
 
+    })
+
+    $('.sidebar-toggler').on('click', function () {
+        let classn = $(this).attr('class').split(' ')[1]
+        if (classn === 'not-active') {
+            $('#prf').addClass('d-none')
+        } else {
+            $('#prf').removeClass(('d-none'))
+        }
     })
 
 

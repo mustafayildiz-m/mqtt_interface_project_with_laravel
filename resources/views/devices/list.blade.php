@@ -7,7 +7,7 @@
 @section('content')
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('dashboard', ['workspace' => 'supercode']) }}">Supercode</a>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard', ['workspace' => $workspace_detail->id]) }}">superLOG</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">Cihazlar</li>
         </ol>
@@ -43,6 +43,14 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <?php
+                            $svg = <<<EOF
+<svg  style="color: red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                                                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                                                                </svg>
+EOF;
+                            ?>
+
                             @if(isset($devices))
                                 @foreach($devices as $key => $device)
                                         <?php
@@ -74,18 +82,18 @@
                                         @if(isset($class))
 
                                             <td><span
-                                                    class="btn btn-sm btn-{{$class}}"><small>{{$class ==='success'? 'Aktif' : 'Deactive' }}</small></span>
+                                                    class="btn btn-sm btn-{{$class}}"><small>{{$class ==='success'? 'Aktif' : 'Deaktif' }}</small></span>
                                             </td>
 
                                         @else
-                                            <td><span class="btn btn-sm btn-danger"><small>Deactive</small></span></td>
+                                            <td><span class="btn btn-sm btn-danger"><small>Deaktif</small></span></td>
 
                                         @endif
 
                                         <td>
-                                            {{$workspace_detail->name}}
-                                            {{isset(\App\Models\Zone::where(['id'=>$device->parent_id])->first()->name)?'>'.\App\Models\Zone::where(['id'=>$device->parent_id])->first()->name:''}}
-                                            > {{$device->zone_name}}
+
+                                            {{printUpperSubtree(\App\Models\Zone::where(['work_space_id' => $workspace_detail->id])->get()->toArray(),$device->zone_id)}}
+
                                         </td>
 
 
@@ -102,9 +110,12 @@
                                                     <a href="{{ route('devices.edit', ['id'=>$device->serial_no,'workspace'=>$workspace_detail->id]) }}"
                                                        class="btn btn-sm btn-secondary">Ayarlar</a>
                                                 </div>
-                                                <div class="d-flex col" style="margin-left: -37%;">
+                                                <div class="col">
                                                     <a href="{{ route('report', ['serial'=>$device->serial_no,'workspace'=>$workspace_detail->id]) }}"
-                                                       class="btn btn-sm btn-secondary">Cihaz Raporları</a>
+                                                       class="btn btn-xs btn-secondary">Cihaz Raporları</a>
+                                                </div>
+                                                <div class="d-flex col">
+                                                    <button class="btn btn-xs btn-danger">Sil</button>
                                                 </div>
                                             </div>
 

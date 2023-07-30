@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Responsive Laravel Admin Dashboard Template based on Bootstrap 5">
-    <meta name="author" content="Superlog">
+    <meta name="author" content="superLOG">
     <meta name="keywords" content="superlog">
 
-    <title>Superlog</title>
+    <title>superLOG</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,11 +57,11 @@
                                 <div class="auth-form-wrapper px-4 py-5">
                                     <a href="#" class="noble-ui-logo d-block mb-2"><img
                                             src="{{ asset('assets/images/logo.png') }}" alt="SuperLog Logo" width="150"></a>
-                                    <h5 class="text-muted fw-normal mb-4">Hesabınıza giriş yapın.</h5>
+                                    <h5 class="text-muted fw-normal mb-4">Hesabınıza Giriş Yapın.</h5>
                                     <form method="POST" action="{{ route('login') }}" class="forms-sample">
                                         @csrf
                                         <div class="mb-3">
-                                            <label for="userEmail" class="form-label">E-posta adresi</label>
+                                            <label for="userEmail" class="form-label">E-posta Adresi</label>
                                             <input type="email" name="email" class="form-control" id="userEmail"
                                                    placeholder="E-posta" required>
                                         </div>

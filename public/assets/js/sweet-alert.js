@@ -8,7 +8,7 @@ $(function() {
     if (type === 'basic') {
       swal.fire({
         text: 'Any fool can use a computer',
-        confirmButtonText: 'Close',
+        confirmButtonText: 'Kapat',
         confirmButtonClass: 'btn btn-danger',
       })
     } else if (type === 'title-and-text') {
@@ -59,7 +59,7 @@ $(function() {
         },
         buttonsStyling: false,
       })
-      
+
       swalWithBootstrapButtons.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -133,7 +133,7 @@ $(function() {
         timer: 3000,
         timerProgressBar: true,
       });
-      
+
       Toast.fire({
         icon: 'success',
         title: 'Signed in successfully'

@@ -7,10 +7,12 @@
 @section('content')
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a
-                    href="{{ route('dashboard', ['workspace' => $workspace_detail->id])}}">{{$workspace_detail->name}}</a>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard', ['workspace' => $workspace_detail->id]) }}">superLOG</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Bölgeler</li>
+            <li class="breadcrumb-item" aria-current="page"><a
+                    href="{{ route('zones', ['workspace' => $workspace_detail->id])}}">Bölgeler</a></li>
+            <li class="breadcrumb-item active">{{$workspace_detail->name}}
+            </li>
         </ol>
     </nav>
 

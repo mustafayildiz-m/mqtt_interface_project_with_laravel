@@ -12,11 +12,14 @@ class ZoneController extends Controller
 {
     public function index($workspace)
     {
+        if (!isset(\auth()->user()->id)) {
+            abort_if(true, 404);
+        }
         $abort = AllowedUserAndWorkspaces::where(['allowed_user_id' => \auth()->user()->id, 'allowed_workspace_id' => $workspace])->count() == 0 ? true : false;
         abort_if($abort, 404);
 
         $pageTitle = config('seo.page_title');
-        config(['seo.page_title' => 'Dashboard | Superlog']);
+        config(['seo.page_title' => 'Dashboard | superLOG']);
 
         $workspace_detail = WorkSpace::find($workspace);
 
@@ -26,40 +29,66 @@ class ZoneController extends Controller
 
     public function create($workspace)
     {
+        if (!isset(\auth()->user()->id)) {
+            abort_if(true, 404);
+        }
         $abort = AllowedUserAndWorkspaces::where(['allowed_user_id' => \auth()->user()->id, 'allowed_workspace_id' => $workspace])->count() == 0 ? true : false;
         abort_if($abort, 404);
         $workspace_detail = WorkSpace::find($workspace);
         $zones = Zone::where('work_space_id', $workspace);
-        config(['seo.page_title' => 'Bölge Oluştur | Superlog']);
+        $tree = Zone::getTree($workspace);
+
+        config(['seo.page_title' => 'Bölge Oluştur | superLOG']);
         $pageTitle = config('seo.page_title');
 
-        return view('zones.create', compact('pageTitle', 'workspace_detail', 'zones'));
+        //return view('zones.create', compact('pageTitle', 'tree', 'workspace_detail', 'zones'));
+        return view('zones.create', ['pageTitle'=>$pageTitle, 'tree'=>$tree, 'workspace_detail'=>$workspace_detail, 'zones'=>$zones]);
     }
 
     public function created(Request $request, $workspace)
     {
 
-        $zone = new Zone();
-        $zone->work_space_id = $workspace;
-        $zone->name = $request->name;
-        $zone->parent_id = $request->parent_id;
-        $zone->save();
-        Alert::success('Bölge Ekleme Başarılı', 'Bölge Ekleme Başarılı');
+        Zone::create([
+            'work_space_id' => $workspace,
+            'name' => $request->name,
+            'parent_id' => $request->parent_id == 0 ? null : $request->parent_id
+        ]);
+        Alert::success('Bölge ekleme başarılı.')->showConfirmButton('Tamam', '#3085d6');
 
         return redirect()->route('zones', $workspace);
 
     }
 
+    //@if(session('tab')==='general') active @endif
+
+    public function createdInDevice(Request $request, $workspace)
+    {
+
+        $zone = new Zone();
+        $zone->work_space_id = $workspace;
+        $zone->name = $request->name;
+        $zone->parent_id = $request->parent_id == 0 ? null : $request->parent_id;
+        $zone->save();
+        Alert::success('Bölge ekleme başarılı.')->showConfirmButton('Tamam', '#3085d6');
+        session(['tab' => 'general']);
+        return back();
+
+    }
+
     public function edit($workspace, $id)
     {
+        $abort = AllowedUserAndWorkspaces::where(['allowed_user_id' => \auth()->user()->id, 'allowed_workspace_id' => $workspace])->count() == 0 ? true : false;
+        abort_if($abort, 404);
+        if (!isset(\auth()->user()->id)) {
+            abort_if(true, 404);
+        }
         $workspaces = \auth()->user()->workspaces;
         $zones = Zone::all();
         $zone = Zone::find($id);
         $workspace_detail = WorkSpace::find($zone->work_space_id);
-        $abort = AllowedUserAndWorkspaces::where(['allowed_user_id' => \auth()->user()->id, 'allowed_workspace_id' => $workspace])->count() == 0 ? true : false;
-        abort_if($abort, 404);
 
-        config(['seo.page_title' => 'Bölge Düzenle | Superlog']);
+
+        config(['seo.page_title' => 'Bölge Düzenle | superLOG']);
         $pageTitle = config('seo.page_title');
 
 
@@ -68,11 +97,11 @@ class ZoneController extends Controller
 
     public function update(Request $request)
     {
-        $parent = 0;
+        $parent = null;
         if ($request->id !== null) {
             $parent = $request->id;
         }
-        $zone = Zone::where(['work_space_id' => $request->workspace_id,  'id' => $request->zone_id]);
+        $zone = Zone::where(['work_space_id' => $request->workspace_id, 'id' => $request->zone_id]);
 
         if ($zone->count() > 0) {
             $zone->update([
@@ -80,11 +109,11 @@ class ZoneController extends Controller
                 'parent_id' => $parent
             ]);
 
-            config(['seo.page_title' => 'Dashboard | Superlog']);
-            Alert::success('Bölge Düzenlendi');
+            config(['seo.page_title' => 'Dashboard | superLOG']);
+            Alert::success('Bölge düzenlendi.')->showConfirmButton('Tamam', '#3085d6');
             return redirect()->back();
         }
-        Alert::error('Bölge Düzenlenemedi');
+        Alert::error('Bölge düzenlenemedi.');
         return redirect()->back();
 
 

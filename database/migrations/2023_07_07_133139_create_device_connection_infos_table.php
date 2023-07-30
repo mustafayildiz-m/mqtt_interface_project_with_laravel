@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,14 +13,17 @@ return new class extends Migration
         Schema::create('device_connection_infos', function (Blueprint $table) {
             $table->id();
             $table->string('serial_no');
-            $table->string('ssid');
-            $table->string('pass');
-            $table->string('submask');
-            $table->string('gateway');
-            $table->string('dns');
-            $table->enum('connection_type', ['ethernet', 'wifi']);
-            $table->enum('connection_status', ['auto', 'manuel']);
-            $table->enum('ip_set', [true, false]);
+            $table->string('ssid')->nullable();
+            $table->string('ip')->nullable();
+            $table->string('password')->nullable();
+            $table->string('submask')->nullable();
+            $table->string('gateway')->nullable();
+            $table->string('dns')->nullable();
+            $table->string('port')->nullable();
+            $table->string('hostname')->nullable();
+            $table->string('connection_type')->nullable();
+            $table->enum('encryption', ['WEP','WPA', 'WPA2','WPA3',])->default('WPA2');
+            $table->boolean('ip_set', [true, false])->default(false); //false gelirse dynamic seçili true gelirse static olacak
             $table->timestamps();
         });
     }

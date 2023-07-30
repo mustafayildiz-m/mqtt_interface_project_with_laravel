@@ -52,11 +52,11 @@
                         <li>Uzantılar: jpeg veya png</li>
                     </ul>
                 </div>
-                <hr>
+
                 <h3 class="mt-5 mb-3">Hakkımda</h3>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-                           name="email" value="@if(isset($user_info->email)) {{$user_info->email}} @endif">
+                    <input type="email" class="form-control" disabled id="floatingInput" placeholder="name@example.com"
+                          value="@if(isset($user_info->email)) {{$user_info->email}} @endif">
                     <label for="floatingInput">E-posta</label>
                 </div>
                 <div class="form-floating mb-3">
@@ -70,9 +70,12 @@
                            data-inputmask-alias="+\90 999 999 99 99"/>
                     <label for="floatingInput">Telefon</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Kaydet</button>
-                <hr>
+                <div class="form-floating mb-3">
+                    <input class="btn btn-success float-md-end" type="submit" value="Kaydet">
+                </div>
             </form>
+
+
             <h3 class="mt-5 mb-3">Şifre</h3>
             <form method="POST" action="{{ route('change.password') }}">
                 @csrf
@@ -107,7 +110,9 @@
                     </div>
                 @endif
 
-                <button type="submit" class="btn btn-primary">Kaydet</button>
+                <div class="form-floating mb-3">
+                    <input class="btn btn-success float-md-end" type="submit" value="Kaydet">
+                </div>
             </form>
 
 

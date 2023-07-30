@@ -6,7 +6,6 @@ use App\Models\AllowedUserAndWorkspaces;
 use App\Models\WorkSpace;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
@@ -29,11 +28,13 @@ class HomeController extends Controller
     public function dashboard($workspace = null)
     {
 
-
 //        if (is_null(\auth()->user())) {
 //            Auth::logout();
 //            return Redirect::to('/login');
 //        }
+        if (!isset(\auth()->user()->id)) {
+            abort_if(true, 404);
+        }
 
         $workspace_detail = WorkSpace::find($workspace);
         $abort = AllowedUserAndWorkspaces::where(['allowed_user_id' => \auth()->user()->id, 'allowed_workspace_id' => $workspace])->count() == 0 ? true : false;
@@ -42,7 +43,6 @@ class HomeController extends Controller
             ->join('work_spaces as ws', 'allow.allowed_workspace_id', '=', 'ws.id')
             ->select('*', 'ws.id as workspace_id')
             ->where('allow.allowed_user_id', \auth()->user()->id)->get();
-
         $pageTitle = config('seo.page_title');
         //kayıtlı cihazı varmı kontrol
         $allowed = AllowedUserAndWorkspaces::where(function ($q) {
@@ -50,17 +50,21 @@ class HomeController extends Controller
         });
 
         if ($allowed->count() === 0) {
-            Alert::error('Kayıtlı cihazınız yok.', 'Lütfen bu alana giriş yapabilmek için cihaz ekleyin')->flash();
+            Alert::error('Kayıtlı cihazınız yok.', 'Lütfen bu alana giriş yapabilmek için cihaz ekleyiniz')->showConfirmButton('Tamam', '#3085d6');
             return redirect()->back();
         }
 
-        config(['seo.page_title' => 'Dashboard | Superlog']);
+        config(['seo.page_title' => 'Dashboard | superLOG']);
+        session(['tab' => 'device_info']);
+
 
         return view('dashboard', compact('pageTitle', 'workspace_detail', 'workspaces'))->with('alert', 'Giriş Başarılı');
     }
 
     public function workspaces()
     {
+
+
         $pageTitle = config('seo.page_title');
 
         if (!auth()->check()) {
@@ -75,6 +79,8 @@ class HomeController extends Controller
             ->select('*', 'ws.id as workspace_id')
             ->distinct('ws.name')
             ->where('allow.allowed_user_id', \auth()->user()->id)->get();
+
+
         return view('workspaces.workspaces', compact(['pageTitle', 'workspaces']));
     }
 }

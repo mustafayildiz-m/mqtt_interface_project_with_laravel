@@ -24,13 +24,8 @@
                         <select class="form-select" id="parent_id" name="parent_id" aria-label="Default select example">
                             <option value="0" selected >Bölge seçiniz...</option>
 
-
-                            @foreach(auth()->user()->workspaces as $workspace)
-                                @foreach($workspace->zones as $zone)
-                                    @if($zone->work_space_id == request()->segments()[0] )
-                                        <option value="{{$zone->id}}">{{$zone->name}}</option>
-                                    @endif
-                                @endforeach
+                            @foreach ($tree as $zone)
+                                <option value="{{ $zone->id }}">{{ str_repeat('--', $zone->depth) }} {{ $zone->name }}</option>
                             @endforeach
 
                         </select>
@@ -41,11 +36,11 @@
                     </div>
                     <input type="hidden" name="workspace_id" value="{{$workspace_detail->id}}">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="zone_name" name="name" placeholder="Ofis">
+                        <input type="text" class="form-control" id="zone_name" name="name" required placeholder="İsim">
                         <label for="name" class="form-label">İsim</label>
                     </div>
-                    <div class="mb-3">
-                        <input class="btn btn-primary" disabled type="submit" id="create-zone-button" value="Oluştur">
+                    <div class="form-floating mb-3">
+                        <input class="btn btn-success float-md-end" type="submit" value="Oluştur">
                     </div>
                 </form>
             </div>

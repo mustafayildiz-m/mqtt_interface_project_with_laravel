@@ -69,5 +69,7 @@ class Kernel extends HttpKernel
         // Diğer middleware'lar
 
         'logout.and.redirect' => \App\Http\Middleware\LogoutAndRedirect::class,
+        'verifyDeviceSerialNumber' => \App\Http\Middleware\VerifyDeviceSerialNumber::class,
+
     ];
 }

@@ -7,7 +7,7 @@
 @section('content')
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('dashboard', ['workspace' => 'supercode']) }}">Supercode</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard', ['workspace' => $workspace_detail->id]) }}">superLOG</a></li>
             <li class="breadcrumb-item active" aria-current="page">Ayarlar</li>
         </ol>
     </nav>
@@ -53,8 +53,8 @@
                         </select>
                         <label for="parent_id" class="form-label">Çalışma alanı sahibi</label>
                     </div>
-                    <div class="mb-3">
-                        <button class="btn btn-primary">Güncelle</button>
+                    <div class="form-floating mb-3">
+                        <input class="btn btn-success float-md-end" type="submit" value="Güncelle">
                     </div>
                 </div>
                 <hr>

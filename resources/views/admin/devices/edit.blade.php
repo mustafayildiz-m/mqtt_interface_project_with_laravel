@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-floating mb-3">
-                                        <input class="form-control form-control-sm" type="text" value="SuperLOG IoT M1" disabled />
+                                        <input class="form-control form-control-sm" type="text" value="superLOG IoT M1" disabled />
                                         <label for="exampleInputEmail1">Marka</label>
                                     </div>
                                 </div>

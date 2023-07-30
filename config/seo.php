@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'page_title' => 'Superlog',
+    'page_title' => 'superLOG',
     'seo_title' => '',
     'seo_description' => ''
 ];

@@ -13,8 +13,8 @@ return new class extends Migration {
         Schema::create('device_logs', function (Blueprint $table) {
             $table->id();
             $table->integer('limit_id')->nullable();
-            $table->integer('humd');
-            $table->integer('temp');
+            $table->float('humd');
+            $table->float('temp');
             $table->string('state');
             $table->string('serial_no');
             $table->string('connection_type');

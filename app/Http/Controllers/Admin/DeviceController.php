@@ -10,7 +10,7 @@ class DeviceController extends Controller
     {
         print("test");
         die();
-        config(['seo.page_title' => 'Cihazlar | Superlog']);
+        config(['seo.page_title' => 'Cihazlar | superLOG']);
         $pageTitle = config('seo.page_title');
 
         return view('admin.devices.index', compact('pageTitle'));
@@ -18,7 +18,7 @@ class DeviceController extends Controller
 
     public function create()
     {
-        config(['seo.page_title' => 'Cihaz Ekle | Superlog']);
+        config(['seo.page_title' => 'Cihaz Ekle | superLOG']);
         $pageTitle = config('seo.page_title');
 
         return view('admin.devices.create', compact('pageTitle'));
@@ -26,7 +26,7 @@ class DeviceController extends Controller
 
     public function edit()
     {
-        config(['seo.page_title' => 'Cihaz Düzenle | Superlog']);
+        config(['seo.page_title' => 'Cihaz Düzenle | superLOG']);
         $pageTitle = config('seo.page_title');
 
         return view('admin.devices.edit', compact('pageTitle'));
@@ -34,7 +34,7 @@ class DeviceController extends Controller
 
     public function assignment()
     {
-        config(['seo.page_title' => 'Cihaz Atamaları | Superlog']);
+        config(['seo.page_title' => 'Cihaz Atamaları | superLOG']);
         $pageTitle = config('seo.page_title');
 
         return view('admin.devices.assignment', compact('pageTitle'));

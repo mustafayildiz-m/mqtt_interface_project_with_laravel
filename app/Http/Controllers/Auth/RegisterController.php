@@ -99,7 +99,7 @@ class RegisterController extends Controller
         $user_info->user_img = '/images/vector-users-icon.jpg';
         $user_info->save();
 
-        Alert::success('Kayıt işlemi başarıyla tamamlandı.');
+        Alert::success('Kayıt işlemi başarıyla tamamlandı.')->showConfirmButton('Tamam', '#3085d6');;
 
         return $user;
 

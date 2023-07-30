@@ -46,8 +46,8 @@
                            placeholder="Ofis">
                     <label for="name" class="form-label">İsim</label>
                 </div>
-                <div class="mb-3">
-                    <button class="btn btn-primary" type="submit">Güncelle</button>
+                <div class="form-floating mb-3">
+                    <input class="btn btn-success float-md-end" type="submit" value="Güncelle">
                 </div>
 
             </form>

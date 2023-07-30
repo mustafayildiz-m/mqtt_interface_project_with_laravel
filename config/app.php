@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'SuperLog'),
+    'name' => env('APP_NAME', 'superLOG'),
 
     /*
     |--------------------------------------------------------------------------
@@ -170,6 +170,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
     ])->toArray(),
 
     /*
@@ -185,6 +188,10 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
+
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

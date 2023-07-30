@@ -65,6 +65,10 @@ Route::get('/{workspace}/devices/{id}/edit', [DeviceController::class, 'edit'])-
 Route::post('/{workspace}/devices/{serial}/edit-device', [DeviceController::class, 'editDevice']);
 Route::post('/{workspace}/devices/{serial}/edit-trashhold', [DeviceController::class, 'editTrashhold']);
 Route::post('/devices/create-device', [DeviceController::class, 'createDevice']);
+Route::post('/devices/ajax-wifi-setting', [DeviceController::class, 'updateWifiSetting'])->name('ajax.wifi');
+Route::post('/devices/ajax-ethernet-setting', [DeviceController::class, 'updateEthernetSetting'])->name('ajax.ethernet');
+Route::post('/devices/set-session-data', [DeviceController::class, 'setSessionData'])->name('ajax.session');
+Route::post('/devices/delete-device', [DeviceController::class, 'deleteDevice'])->name('ajax.delete.device');
 
 
 // Account
@@ -80,27 +84,32 @@ Route::post('/change-password', [AccountController::class, 'changePassword'])->n
 Route::get('/{workspace}/zones', [ZoneController::class, 'index'])->name('zones');
 Route::get('/{workspace}/zones/create', [ZoneController::class, 'create'])->name('zones.create');
 Route::post('zones/{workspace}/created', [ZoneController::class, 'created']);
+Route::post('zones/{workspace}/created-in-device', [ZoneController::class, 'createdInDevice']);
 Route::get('/{workspace}/zones/{id}/edit', [ZoneController::class, 'edit'])->name('zones.edit');
 Route::put('/zones/update', [ZoneController::class, 'update']);
 
 // Workspace
-Route::get('/{workspace}/settings', [WorkspaceController::class, 'settings'])->name('workspaces.settings');
-Route::get('/{workspace}/collaborations', [WorkspaceController::class, 'collaborations'])->name('workspaces.collaborations');
+Route::get('/{workspace}/settings', [WorkspaceController::class, 'settings'])->name('settings');
+Route::get('/{workspace}/collaborations', [WorkspaceController::class, 'collaborations'])->name('collaborations');
 Route::post('/addnewworkspace', [WorkSpaceController::class, 'store']);
 Route::get('/', [HomeController::class, 'workspaces'])->name('select-workspace');
 Route::post('/{workspace}/workspace/invite-email', [WorkSpaceController::class, 'inviteEmail']);
 
 
-//Image
-Route::controller(ImageController::class)->group(function () {
-    Route::get('/image-upload', 'index')->name('image.form');
-    Route::post('/upload-image', 'storeImage')->name('image.store');
-});
+////Image
+//Route::controller(ImageController::class)->group(function () {
+//    Route::get('/image-upload', 'index')->name('image.form');
+//    Route::post('/upload-image', 'storeImage')->name('image.store');
+//});
 
 
 // Report
 Route::get('/{workspace}/reports', [ReportController::class, 'index'])->name('reports');
 Route::get('/device/{workspace}/reports/{serial}', [ReportController::class, 'deviceReports'])->name('report');
+Route::post('/{workspace}/reports', [ReportController::class, 'index']);
+Route::post('/device/{workspace}/reports/{serial}', [ReportController::class, 'deviceReports']);
+//Route::post('/export-excel/{workspace}', 'ExportController@exportToExcel')->name('export.excel');
+Route::post('/export', [ReportController::class, 'exportToExcel']);
 
 
 // Issues

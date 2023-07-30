@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        config(['seo.page_title' => 'Kullanıcılar | Superlog']);
+        config(['seo.page_title' => 'Kullanıcılar | superLOG']);
         $pageTitle = config('seo.page_title');
 
         return view('admin.admins.index', compact('pageTitle'));
